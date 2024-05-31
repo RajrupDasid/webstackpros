@@ -1,4 +1,39 @@
-const AdminSignUpIsland = () => {
+import { useSignal } from "@preact/signals";
+
+const AdminLoginIsland = () => {
+  const email = useSignal("");
+  const password = useSignal("");
+  const isLoading = useSignal(false);
+  const handelLogin = async (e: Event) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("email", email.value);
+    formData.append("password", password.value);
+    try {
+      isLoading.value = true;
+      const response = await fetch("/api/login", {
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const set_session = sessionStorage.setItem("intercom", data.token);
+        const set_local = localStorage.setItem("intercom", data.token);
+        isLoading.value = false;
+        if (data.admin == true) {
+          window.location.href = "/admin";
+        } else if (data.admin == false) {
+          window.location.href = "/user/profile";
+        } else {
+          window.location.href = "/";
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      isLoading.value = false;
+    }
+  };
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -67,23 +102,10 @@ const AdminSignUpIsland = () => {
               </p>
             </div>
 
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="LastName"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                >
-                  Username
-                </label>
-
-                <input
-                  type="text"
-                  id="username"
-                  name="user_name"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                />
-              </div>
-
+            <form
+              onSubmit={handelLogin}
+              className="mt-8 grid grid-cols-6 gap-6"
+            >
               <div className="col-span-6">
                 <label
                   htmlFor="Email"
@@ -96,6 +118,9 @@ const AdminSignUpIsland = () => {
                   type="email"
                   id="Email"
                   name="email"
+                  value={email.value}
+                  onInput={(e) =>
+                    email.value = (e.target as HTMLInputElement).value}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
@@ -112,37 +137,24 @@ const AdminSignUpIsland = () => {
                   type="password"
                   id="Password"
                   name="password"
+                  onInput={(e) =>
+                    password.value = (e.target as HTMLInputElement).value}
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
 
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="PasswordConfirmation"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                >
-                  Password Confirmation
-                </label>
-
-                <input
-                  type="password"
-                  id="PasswordConfirmation"
-                  name="password_confirmation"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                />
-              </div>
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white">
                   Create an account
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-400">
-                  Already have an account?
+                  Don't have account? &nbsp;
                   <a
-                    href="/admin/auth/login"
+                    href="/admin/auth/signup"
                     className="text-gray-700 underline dark:text-gray-200"
                   >
-                    Log in
+                    Signup
                   </a>.
                 </p>
               </div>
@@ -154,4 +166,4 @@ const AdminSignUpIsland = () => {
   );
 };
 
-export default AdminSignUpIsland;
+export default AdminLoginIsland;

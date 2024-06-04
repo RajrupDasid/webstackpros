@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $about from "./routes/about.tsx";
 import * as $admin_auth_login from "./routes/admin/auth/login.tsx";
 import * as $admin_auth_signup from "./routes/admin/auth/signup.tsx";
 import * as $admin_dashboard_dashboard from "./routes/admin/dashboard/dashboard.tsx";
@@ -19,6 +20,7 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/about.tsx": $about,
     "./routes/admin/auth/login.tsx": $admin_auth_login,
     "./routes/admin/auth/signup.tsx": $admin_auth_signup,
     "./routes/admin/dashboard/dashboard.tsx": $admin_dashboard_dashboard,

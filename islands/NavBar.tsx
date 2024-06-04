@@ -27,27 +27,9 @@ const NavBar = () => {
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href="/about"
                   >
                     About
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
-                  >
-                    Careers
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
-                  >
-                    History
                   </a>
                 </li>
 
@@ -75,6 +57,14 @@ const NavBar = () => {
                     href="#"
                   >
                     Blog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                    href="#"
+                  >
+                    Careers
                   </a>
                 </li>
               </ul>
@@ -114,27 +104,9 @@ const NavBar = () => {
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href="/about"
                   >
                     About
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
-                  >
-                    Careers
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
-                  >
-                    History
                   </a>
                 </li>
 
@@ -162,6 +134,15 @@ const NavBar = () => {
                     href="#"
                   >
                     Blog
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                    href="#"
+                  >
+                    Careers
                   </a>
                 </li>
               </ul>

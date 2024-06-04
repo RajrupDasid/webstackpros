@@ -9,7 +9,7 @@ const appwrite_io = env["APPWRITE_IO"];
 export const appwrite_db_id = env["APPWRITE_DB_ID"];
 export const user_collection = env["USER_COL_ID"];
 export const post_collection = env["POSTS_COL_ID"];
-export const contact_collection = env["665753b8002b71d29b83"];
+export const contact_collection = env["CONTACT_COL_ID"];
 
 const client = new sdk.Client();
 

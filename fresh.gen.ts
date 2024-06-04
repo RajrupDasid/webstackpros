@@ -4,18 +4,36 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $about from "./routes/about.tsx";
+import * as $admin_auth_login from "./routes/admin/auth/login.tsx";
+import * as $admin_auth_signup from "./routes/admin/auth/signup.tsx";
+import * as $admin_dashboard_dashboard from "./routes/admin/dashboard/dashboard.tsx";
+import * as $api_adminapi_adminlogin from "./routes/api/adminapi/adminlogin.ts";
+import * as $api_adminapi_adminsignup from "./routes/api/adminapi/adminsignup.ts";
 import * as $index from "./routes/index.tsx";
 import * as $NavBar from "./islands/NavBar.tsx";
+import * as $adminislands_AdminLoginIsland from "./islands/adminislands/AdminLoginIsland.tsx";
+import * as $adminislands_AdminSignUpIsland from "./islands/adminislands/AdminSignUpIsland.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/about.tsx": $about,
+    "./routes/admin/auth/login.tsx": $admin_auth_login,
+    "./routes/admin/auth/signup.tsx": $admin_auth_signup,
+    "./routes/admin/dashboard/dashboard.tsx": $admin_dashboard_dashboard,
+    "./routes/api/adminapi/adminlogin.ts": $api_adminapi_adminlogin,
+    "./routes/api/adminapi/adminsignup.ts": $api_adminapi_adminsignup,
     "./routes/index.tsx": $index,
   },
   islands: {
     "./islands/NavBar.tsx": $NavBar,
+    "./islands/adminislands/AdminLoginIsland.tsx":
+      $adminislands_AdminLoginIsland,
+    "./islands/adminislands/AdminSignUpIsland.tsx":
+      $adminislands_AdminSignUpIsland,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

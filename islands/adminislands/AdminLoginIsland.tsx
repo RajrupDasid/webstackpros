@@ -11,7 +11,7 @@ const AdminLoginIsland = () => {
     formData.append("password", password.value);
     try {
       isLoading.value = true;
-      const response = await fetch("/api/login", {
+      const response = await fetch("/api/adminapi/adminlogin", {
         method: "POST",
         body: formData,
       });

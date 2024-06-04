@@ -1,10 +1,41 @@
+import { useSignal } from "@preact/signals";
 const AdminSignUpIsland = () => {
+  const username = useSignal("");
+  const email = useSignal("");
+  const password = useSignal("");
+  const password_confirmation = useSignal("");
+
+  const handelSubmit = async (e: Event) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("user_name", username.value);
+    formData.append("email", email.value);
+    formData.append("password", password.value);
+    formData.append("password_confirmation", password_confirmation.value);
+    try {
+      const response = await fetch("/api/adminapi/adminsignup", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Handle successful signup
+        window.location.href = "/admin/auth/login";
+      } else {
+        // Handle signup error
+        console.error("Signup failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
-            alt=""
+            alt="signup"
             src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             className="absolute inset-0 h-full w-full object-cover opacity-80"
           />
@@ -67,7 +98,10 @@ const AdminSignUpIsland = () => {
               </p>
             </div>
 
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <form
+              onSubmit={handelSubmit}
+              className="mt-8 grid grid-cols-6 gap-6"
+            >
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="LastName"
@@ -137,7 +171,7 @@ const AdminSignUpIsland = () => {
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-400">
-                  Already have an account?
+                  Already have an account? &nbsp;
                   <a
                     href="/admin/auth/login"
                     className="text-gray-700 underline dark:text-gray-200"

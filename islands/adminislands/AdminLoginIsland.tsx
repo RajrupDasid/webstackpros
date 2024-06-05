@@ -17,8 +17,11 @@ const AdminLoginIsland = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        const set_session = sessionStorage.setItem("intercom", data.token);
-        const set_local = localStorage.setItem("intercom", data.token);
+
+        const _set_session = sessionStorage.setItem("intercom", data.token);
+
+        const _set_local = localStorage.setItem("intercom", data.token);
+
         isLoading.value = false;
         if (data.admin == true) {
           window.location.href = "/admin";
